@@ -42,7 +42,7 @@ export default function TopNav({ items, className, ...props }: TopNavProps) {
               className={clsx(
                 "h-14 font-medium",
                 item.href === pathname
-                  ? "text-primary border-b border-primary"
+                  ? "text-primary border-b-4 border-primary"
                   : "text-neutral-5 ",
               )}
             >

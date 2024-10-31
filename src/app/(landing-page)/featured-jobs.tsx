@@ -2,7 +2,7 @@ import JobCard from "@/components/job-card";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function LandingPageFeaturedJobs() {
+export default function FeaturedJobs() {
   return (
     <section className="w-full flex flex-col gap-12 px-32 pb-16 bg-white">
       <div className="flex justify-between items-end">

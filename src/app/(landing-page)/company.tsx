@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function LandingPageCompany() {
+export default function Company() {
   return (
     <section className="w-full flex flex-col gap-8 px-32 py-12 bg-white">
       <p className="text-lg text-neutral-7">

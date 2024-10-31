@@ -36,7 +36,11 @@ export default function JobSearch({ className, ...props }: JobSearchProps) {
       </div>
       <div className="grow flex gap-4 items-center">
         <MapPinIcon className="size-6 text-neutral-6" />
-        <Combobox value={selectedLocation} onChange={setSelectedLocation}>
+        <Combobox
+          immediate
+          value={selectedLocation}
+          onChange={setSelectedLocation}
+        >
           <div className="grow relative">
             <ComboboxInput<JobLocation>
               displayValue={(location) => location?.name}

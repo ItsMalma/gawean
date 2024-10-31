@@ -2,7 +2,7 @@ import JobCategoryCard from "@/components/job-category-card";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function LandingPageCategory() {
+export default function Category() {
   return (
     <section className="w-full flex flex-col gap-12 px-32 pt-16 bg-white">
       <div className="flex justify-between items-end">

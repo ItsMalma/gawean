@@ -2,7 +2,7 @@ import JobCard from "@/components/job-card";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
-export default function LandingPageLatestJobs() {
+export default function LatestJobs() {
   return (
     <section className="relative w-full flex flex-col gap-12 px-32 py-16 bg-neutral-1 overflow-hidden">
       <svg

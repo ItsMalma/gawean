@@ -1,7 +1,7 @@
 import Button from "@/components/button";
 import Image from "next/image";
 
-export default function LandingPageCTA() {
+export default function CTA() {
   return (
     <section className="w-full flex flex-col gap-12 px-32 py-16 bg-white">
       <div

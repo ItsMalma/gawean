@@ -1,6 +1,5 @@
 import { FetchHookReturn } from "@/utils/fetch";
 import { JobCategory } from "./job-category";
-import { BadgeProps } from "@/components/badge";
 
 export type Job = {
   id: number;
@@ -11,6 +10,8 @@ export type Job = {
   location: string;
   description: string;
   categories: Pick<JobCategory, "id" | "name" | "color">[];
+  applied: number;
+  capacity: number;
 };
 
 const dump: Job[] = [
@@ -34,6 +35,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 3,
+    capacity: 10,
   },
   {
     id: 2,
@@ -55,6 +58,8 @@ const dump: Job[] = [
         color: "purple",
       },
     ],
+    applied: 7,
+    capacity: 10,
   },
   {
     id: 3,
@@ -71,6 +76,8 @@ const dump: Job[] = [
         color: "yellow",
       },
     ],
+    applied: 6,
+    capacity: 10,
   },
   {
     id: 4,
@@ -87,6 +94,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 8,
+    capacity: 10,
   },
   {
     id: 5,
@@ -108,6 +117,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 9,
+    capacity: 10,
   },
   {
     id: 6,
@@ -129,6 +140,8 @@ const dump: Job[] = [
         color: "purple",
       },
     ],
+    applied: 9,
+    capacity: 10,
   },
   {
     id: 7,
@@ -145,6 +158,8 @@ const dump: Job[] = [
         color: "yellow",
       },
     ],
+    applied: 3,
+    capacity: 10,
   },
   {
     id: 8,
@@ -161,6 +176,8 @@ const dump: Job[] = [
         color: "red",
       },
     ],
+    applied: 0,
+    capacity: 10,
   },
   {
     id: 9,
@@ -182,6 +199,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 4,
+    capacity: 10,
   },
   {
     id: 10,
@@ -203,6 +222,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 8,
+    capacity: 10,
   },
   {
     id: 11,
@@ -224,6 +245,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 7,
+    capacity: 10,
   },
   {
     id: 12,
@@ -246,6 +269,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 4,
+    capacity: 10,
   },
   {
     id: 13,
@@ -268,6 +293,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 10,
+    capacity: 10,
   },
   {
     id: 14,
@@ -290,6 +317,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 9,
+    capacity: 10,
   },
   {
     id: 15,
@@ -312,6 +341,8 @@ const dump: Job[] = [
         color: "green",
       },
     ],
+    applied: 6,
+    capacity: 10,
   },
 ];
 

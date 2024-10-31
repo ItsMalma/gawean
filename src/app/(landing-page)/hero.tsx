@@ -9,7 +9,7 @@ const topNavItems: TopNavItem[] = [
   { text: "Jelajahi Perusahaan", href: "/companies" },
 ];
 
-export default function LandingPageHero() {
+export default function Hero() {
   return (
     <section className="relative flex flex-col bg-neutral-1 overflow-hidden">
       <svg
