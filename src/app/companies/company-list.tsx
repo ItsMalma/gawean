@@ -1,6 +1,6 @@
-import { useJobs } from "@/api/job";
+import { useCompanies } from "@/api/company";
 import Checkbox from "@/components/checkbox";
-import JobItem from "@/components/job-item";
+import CompanyCard from "@/components/company-card";
 import Pagination from "@/components/pagination";
 import usePagination from "@/hooks/use-pagination";
 import {
@@ -28,17 +28,7 @@ type Filter = {
 
 const filters: Filter[] = [
   {
-    name: "Type of Employment",
-    items: [
-      { name: "Full-Time", total: 3 },
-      { name: "Part-Time", total: 5 },
-      { name: "Remote", total: 2 },
-      { name: "Internship", total: 24 },
-      { name: "Contract", total: 3 },
-    ],
-  },
-  {
-    name: "Major",
+    name: "Jurusan",
     items: [
       { name: "Mesin", total: 24 },
       { name: "Sipil", total: 3 },
@@ -47,34 +37,26 @@ const filters: Filter[] = [
     ],
   },
   {
-    name: "Job Level",
+    name: "Jumlah Karyawan",
     items: [
-      { name: "Entry Level", total: 57 },
-      { name: "Mid Level", total: 3 },
-      { name: "Senior Level", total: 5 },
-      { name: "Director", total: 12 },
-      { name: "VP or Above", total: 8 },
-    ],
-  },
-  {
-    name: "Salary Range",
-    items: [
-      { name: "$700 - $1000", total: 4 },
-      { name: "$1000 - $1500", total: 6 },
-      { name: "$1500 - $2000", total: 10 },
-      { name: "$2000 or above", total: 4 },
+      { name: "1-50", total: 25 },
+      { name: "51-100", total: 25 },
+      { name: "101-250", total: 25 },
+      { name: "251-500", total: 25 },
+      { name: "501-1000", total: 25 },
+      { name: "1001-above", total: 25 },
     ],
   },
 ];
 
 type SortBy = "Paling relevan" | "Paling terbaru";
 
-export default function JobList() {
-  const { data: jobs } = useJobs();
+export default function CompanyList() {
+  const { data: companies } = useCompanies();
 
   const [sortBy, setSortBy] = React.useState<SortBy>("Paling relevan");
 
-  const pagination = usePagination(jobs);
+  const pagination = usePagination(companies);
 
   return (
     <section className="w-full flex gap-10 px-32 py-16 bg-white">
@@ -104,8 +86,10 @@ export default function JobList() {
       <div className="grow w-full flex flex-col justify-center items-center gap-8">
         <div className="w-full flex justify-between">
           <div className="flex flex-col gap-1">
-            <h3 className="font-bold text-neutral-6">Daftar Loker</h3>
-            <p className="text-neutral-4">Menampilkan {jobs.length} hasil</p>
+            <h3 className="font-bold text-neutral-6">Daftar Perusahaan</h3>
+            <p className="text-neutral-4">
+              Menampilkan {companies.length} hasil
+            </p>
           </div>
           <div className="flex gap-6 justify-center items-center">
             <div className="flex gap-3 items-center">
@@ -144,9 +128,9 @@ export default function JobList() {
             </div>
           </div>
         </div>
-        <div className="grow w-full flex flex-col gap-4">
-          {pagination.data.map((job) => (
-            <JobItem key={job.id} jobId={job.id} />
+        <div className="grow w-full grid grid-cols-2 gap-8">
+          {pagination.data.map((company) => (
+            <CompanyCard key={company.id} companyId={company.id} />
           ))}
         </div>
         <Pagination pagination={pagination} />

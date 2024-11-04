@@ -14,15 +14,18 @@ import { Location, useLocations } from "@/api/location";
 export type SearchBarProps = React.HTMLAttributes<HTMLDivElement> & {
   inputPlaceholder?: string;
   buttonText?: string;
+  onSearch?: (search: string, location: Location) => void;
 };
 
 export default function SearchBar({
   inputPlaceholder,
   buttonText = "Cari",
+  onSearch,
   className,
   ...props
 }: SearchBarProps) {
   const { data: locations } = useLocations();
+  const [searchValue, setSearchValue] = React.useState("");
   const [selectedLocation, setSelectedLocation] =
     React.useState<Location | null>(null);
 
@@ -40,6 +43,8 @@ export default function SearchBar({
           type="text"
           className="grow h-14 border-b border-neutral-2 placeholder:text-neutral-4 text-neutral-6"
           placeholder={inputPlaceholder}
+          value={searchValue}
+          onInput={(e) => setSearchValue(e.currentTarget.value)}
         />
       </div>
       <div className="grow flex gap-4 items-center">
@@ -76,7 +81,14 @@ export default function SearchBar({
           </ComboboxOptions>
         </Combobox>
       </div>
-      <Button text={buttonText} />
+      <Button
+        text={buttonText}
+        onClick={() => {
+          if (onSearch && !!selectedLocation) {
+            onSearch(searchValue, selectedLocation);
+          }
+        }}
+      />
     </div>
   );
 }

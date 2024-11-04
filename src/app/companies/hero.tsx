@@ -2,6 +2,7 @@
 
 import SearchBar from "@/components/search-bar";
 import TopNav, { TopNavItem } from "@/components/top-nav";
+import { useRouter } from "next/navigation";
 
 const topNavItems: TopNavItem[] = [
   { text: "Cari Pekerjaan", href: "/jobs" },
@@ -9,6 +10,8 @@ const topNavItems: TopNavItem[] = [
 ];
 
 export default function Hero() {
+  const router = useRouter();
+
   return (
     <>
       <TopNav items={topNavItems} className="bg-white sticky top-0 z-40" />
@@ -104,6 +107,12 @@ export default function Hero() {
             className="w-full shadow-lg"
             inputPlaceholder="Masukkan kata kunci seperti nama perusahaan"
             buttonText="Cari"
+            onSearch={(search, location) => {
+              router.push(
+                `/companies?search=${search}&location=${location.id}`,
+                { scroll: false },
+              );
+            }}
           />
         </div>
       </section>
