@@ -6,6 +6,8 @@ import React from "react";
 import Badge from "./badge";
 import Button from "./button";
 import ProgressBar from "./progress-bar";
+import { useMajors } from "@/api/major";
+import { useCompany } from "@/api/company";
 
 export type JobItemProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   jobId: number;
@@ -17,6 +19,8 @@ export default function JobItem({
   ...props
 }: JobItemProps) {
   const { data: job } = useJob(jobId);
+  const { data: majors } = useMajors(job?.majors);
+  const { data: company } = useCompany(job?.company);
 
   return (
     <Link
@@ -31,7 +35,7 @@ export default function JobItem({
         <Image
           src={
             job?.logo ??
-            "https://placehold.co/48/2563EB/white?text=Tidak\\nDitemukan&font=Open+Sans"
+            "https://placehold.co/48/2563EB/white?text=404&font=Open+Sans"
           }
           alt={job ? `Logo perusahaan ${job.company}` : "Logo tidak ditemukan"}
           width={48}
@@ -42,22 +46,17 @@ export default function JobItem({
             {job?.position ?? "Tidak Ditemukan"}
           </p>
           <div className="w-fit flex justify-center items-center gap-2 text-neutral-5">
-            <p>{job?.company ?? "Tidak Ditemukan"}</p>
+            <p>{company?.name ?? "Tidak Ditemukan"}</p>
             <span className="size-1 roundd-full bg-neutral-5/30" />
             <p>{job?.location ?? "Tidak Ditemukan"}</p>
           </div>
           <div className="flex gap-2">
             <Badge
-              color="green"
+              color="purple"
               text={job?.employmentType ?? "Tidak Ditemukan"}
             />
-            <span className="w-[1px] self-stretch bg-neutral-2" />
-            {(job?.categories ?? []).map((category) => (
-              <Badge
-                key={category.id}
-                color={category.color}
-                text={category.name}
-              />
+            {(majors ?? []).map((major) => (
+              <Badge key={major.id} color={major.color} text={major.name} />
             ))}
           </div>
         </div>

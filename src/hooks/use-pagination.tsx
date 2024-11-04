@@ -35,7 +35,7 @@ export default function usePagination<T>(
 
   const set = React.useCallback(
     (newPage: number) => {
-      if (newPage - 1 < 1 || newPage + 1 > maxPage) return;
+      if (newPage < 1 || newPage > maxPage) return;
       setPage(newPage);
     },
     [maxPage],

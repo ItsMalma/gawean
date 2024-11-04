@@ -1,6 +1,6 @@
 "use client";
 
-import JobSearch from "@/components/job-search";
+import SearchBar from "@/components/search-bar";
 import TopNav, { TopNavItem } from "@/components/top-nav";
 import Image from "next/image";
 
@@ -71,7 +71,11 @@ export default function Hero() {
           Sebuah platform yang menjadi jembatan bagi siswa/siswi dan lulusan
           SMKN 4 Kota Tangerang dengan industri dan dunia kerja.
         </p>
-        <JobSearch className="shadow-lg" />
+        <SearchBar
+          className="shadow-lg"
+          inputPlaceholder="Masukkan kata kunci seperti posisi pekerjaan"
+          buttonText="Cari Pekerjaan"
+        />
       </div>
     </section>
   );

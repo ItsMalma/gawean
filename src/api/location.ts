@@ -1,11 +1,11 @@
 import { FetchHookReturn } from "@/utils/fetch";
 
-export type JobLocation = {
+export type Location = {
   id: number;
   name: string;
 };
 
-const dump: JobLocation[] = [
+const dump: Location[] = [
   { id: 1, name: "Jakarta" },
   { id: 2, name: "Surabaya" },
   { id: 3, name: "Depok" },
@@ -18,7 +18,7 @@ const dump: JobLocation[] = [
   { id: 10, name: "Yogyakarta" },
 ];
 
-export function useJobLocations(): FetchHookReturn<JobLocation[]> {
+export function useLocations(): FetchHookReturn<Location[]> {
   return {
     data: dump,
     isLoading: false,

@@ -19,7 +19,7 @@ function PaginationItem<T>(props: {
         }
       }}
       className={clsx(
-        "size-12 flex gap-2 justify-center items-center px-3 py-2.5 rounded-lg font-semibold",
+        "size-12 flex gap-2 justify-center items-center px-3 py-2.5 rounded-lg font-semibold cursor-pointer",
         props.value === props.pagination.page
           ? "bg-primary text-white"
           : "bg-transparent text-neutral-5",

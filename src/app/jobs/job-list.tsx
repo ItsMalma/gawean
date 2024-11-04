@@ -38,16 +38,12 @@ const filters: Filter[] = [
     ],
   },
   {
-    name: "Categories",
+    name: "Major",
     items: [
-      { name: "Design", total: 24 },
-      { name: "Sales", total: 3 },
-      { name: "Marketing", total: 3 },
-      { name: "Business", total: 3 },
-      { name: "Human Resource", total: 6 },
-      { name: "Finance", total: 4 },
-      { name: "Engineering", total: 4 },
-      { name: "Technology", total: 5 },
+      { name: "Mesin", total: 24 },
+      { name: "Sipil", total: 3 },
+      { name: "Listrik", total: 3 },
+      { name: "RPL", total: 3 },
     ],
   },
   {

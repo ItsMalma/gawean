@@ -1,8 +1,9 @@
+import { Color } from "@/utils/color";
 import clsx from "clsx";
 import React from "react";
 
 export type BadgeProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  color: "blue" | "yellow" | "green" | "purple" | "red";
+  color: Color;
   text: string;
 };
 

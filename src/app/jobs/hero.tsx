@@ -1,6 +1,6 @@
 "use client";
 
-import JobSearch from "@/components/job-search";
+import SearchBar from "@/components/search-bar";
 import TopNav, { TopNavItem } from "@/components/top-nav";
 
 const topNavItems: TopNavItem[] = [
@@ -100,7 +100,11 @@ export default function Hero() {
               Temukan Karier Impian Anda di Perusahaan Ternama
             </p>
           </div>
-          <JobSearch className="w-full shadow-lg" />
+          <SearchBar
+            className="w-full shadow-lg"
+            inputPlaceholder="Masukkan kata kunci seperti posisi pekerjaan"
+            buttonText="Cari"
+          />
         </div>
       </section>
     </>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import Tag from "./tag";
 import Badge from "./badge";
+import { useMajors } from "@/api/major";
 
 export type JobCardProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   variant: "compact" | "medium";
@@ -13,6 +14,7 @@ export type JobCardProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 
 function CompactJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
   const { data: job } = useJob(jobId);
+  const { data: majors } = useMajors(job?.majors);
 
   return (
     <Link
@@ -27,7 +29,7 @@ function CompactJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
         <Image
           src={
             job?.logo ??
-            "https://placehold.co/48/2563EB/white?text=Tidak\\nDitemukan&font=Open+Sans"
+            "https://placehold.co/48/2563EB/white?text=404&font=Open+Sans"
           }
           alt={job ? `Logo perusahaan ${job.company}` : "Logo tidak ditemukan"}
           width={48}
@@ -49,12 +51,8 @@ function CompactJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
         {job?.description ?? "Tidak Ditemukan"}
       </p>
       <div className="flex gap-2">
-        {(job?.categories ?? []).map((category) => (
-          <Badge
-            key={category.id}
-            color={category.color}
-            text={category.name}
-          />
+        {(majors ?? []).map((major) => (
+          <Badge key={major.id} color={major.color} text={major.name} />
         ))}
       </div>
     </Link>
@@ -63,6 +61,7 @@ function CompactJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
 
 function MediumJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
   const { data: job } = useJob(jobId);
+  const { data: majors } = useMajors(job?.majors);
 
   return (
     <Link
@@ -73,7 +72,7 @@ function MediumJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
       <Image
         src={
           job?.logo ??
-          "https://placehold.co/48/2563EB/white?text=Tidak\\nDitemukan&font=Open+Sans"
+          "https://placehold.co/48/2563EB/white?text=404&font=Open+Sans"
         }
         alt={job ? `Logo perusahaan ${job.company}` : "Logo tidak ditemukan"}
         width={48}
@@ -94,12 +93,8 @@ function MediumJobCard({ jobId: jobId, className, ...props }: JobCardProps) {
             text={job?.employmentType ?? "Tidak Ditemukan"}
           />
           <span className="w-[1px] self-stretch bg-neutral-2" />
-          {(job?.categories ?? []).map((category) => (
-            <Badge
-              key={category.id}
-              color={category.color}
-              text={category.name}
-            />
+          {(majors ?? []).map((major) => (
+            <Badge key={major.id} color={major.color} text={major.name} />
           ))}
         </div>
       </div>

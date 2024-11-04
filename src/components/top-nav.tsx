@@ -28,12 +28,12 @@ export default function TopNav({ items, className, ...props }: TopNavProps) {
       {...props}
     >
       <div className="h-full flex gap-12 justify-center items-center">
-        <div className="flex gap-2 justify-center items-center">
+        <Link href="/" className="flex gap-2 justify-center items-center">
           <Logo height={32} />
           <p className="font-red-hat-display font-bold text-2xl leading-6 -tracking-tighter text-neutral-6">
             Gawean
           </p>
-        </div>
+        </Link>
         <div className="h-full flex gap-4 justify-center items-end">
           {items.map((item) => (
             <Link

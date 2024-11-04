@@ -1,15 +1,16 @@
 import { FetchHookReturn } from "@/utils/fetch";
-import { JobCategory } from "./job-category";
+import { Major } from "./major";
+import { Company } from "./company";
 
 export type Job = {
   id: number;
   logo: string;
   employmentType: string;
   position: string;
-  company: string;
+  company: Company["id"];
   location: string;
   description: string;
-  categories: Pick<JobCategory, "id" | "name" | "color">[];
+  majors: Major["id"][];
   applied: number;
   capacity: number;
 };
@@ -18,330 +19,183 @@ const dump: Job[] = [
   {
     id: 1,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Email Marketing",
-    company: "Revolut",
-    location: "Madrid, Spain",
-    description: "Revolut is looking for Email Marketing to help team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 3,
-    capacity: 10,
+    employmentType: "Full-time",
+    position: "Mechanical Engineer",
+    company: 1,
+    location: "Jakarta, Indonesia",
+    description:
+      "Design and optimize machinery used in industrial applications, collaborate with cross-functional teams.",
+    majors: [1],
+    applied: 10,
+    capacity: 15,
   },
   {
     id: 2,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Brand Designer",
-    company: "Dropbox",
-    location: "San Francisco, US",
-    description: "Dropbox is looking for Brand Designer to help the team",
-    categories: [
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-      {
-        id: 7,
-        name: "Business",
-        color: "purple",
-      },
-    ],
-    applied: 7,
+    employmentType: "Full-time",
+    position: "Civil Engineer",
+    company: 2,
+    location: "Bandung, Indonesia",
+    description:
+      "Plan and oversee construction projects, ensure structural integrity and compliance with local standards.",
+    majors: [2],
+    applied: 5,
     capacity: 10,
   },
   {
     id: 3,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Email Marketing",
-    company: "Pitch",
-    location: "Berlin, Germany",
-    description: "Pitch is looking for Customer Manager to join marketing team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-    ],
-    applied: 6,
-    capacity: 10,
+    employmentType: "Part-time",
+    position: "Electrical Technician",
+    company: 3,
+    location: "Surabaya, Indonesia",
+    description:
+      "Install, maintain, and troubleshoot electrical systems, work with power distribution networks.",
+    majors: [3],
+    applied: 8,
+    capacity: 12,
   },
   {
     id: 4,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Visual Designer",
-    company: "Blinklist",
-    location: "Granada, Spain",
-    description: "Blinkist is looking for Visual Designer to help team design",
-    categories: [
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 8,
-    capacity: 10,
+    employmentType: "Internship",
+    position: "Software Developer Intern",
+    company: 4,
+    location: "Yogyakarta, Indonesia",
+    description:
+      "Assist in the development of web applications, work closely with the development team on various projects.",
+    majors: [4],
+    applied: 20,
+    capacity: 25,
   },
   {
     id: 5,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Product Designer",
-    company: "ClassPass",
-    location: "Manchester, UK",
-    description: "ClassPass is looking for Product Designer to help us",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 9,
+    employmentType: "Full-time",
+    position: "Quality Control Engineer",
+    company: 5,
+    location: "Medan, Indonesia",
+    description:
+      "Monitor production processes to ensure quality standards in mechanical parts and systems.",
+    majors: [1],
+    applied: 7,
     capacity: 10,
   },
   {
     id: 6,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Lead Designer",
-    company: "Canva",
-    location: "Ontario, Canada",
-    description: "Canva is looking for Lead Engineer to help develop",
-    categories: [
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-      {
-        id: 7,
-        name: "Business",
-        color: "purple",
-      },
-    ],
-    applied: 9,
-    capacity: 10,
+    employmentType: "Full-time",
+    position: "Structural Designer",
+    company: 5,
+    location: "Bandung, Indonesia",
+    description:
+      "Create and manage designs for civil structures, ensuring stability and sustainability.",
+    majors: [2],
+    applied: 12,
+    capacity: 20,
   },
   {
     id: 7,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Brand Strategist",
-    company: "GoDaddy",
-    location: "Marseille, France",
-    description: "GoDaddy is looking for Brand Strategist to join the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-    ],
-    applied: 3,
-    capacity: 10,
+    employmentType: "Contract",
+    position: "Field Technician",
+    company: 6,
+    location: "Semarang, Indonesia",
+    description:
+      "Manage fieldwork, conduct maintenance, and assist with electric systems in large facilities.",
+    majors: [3],
+    applied: 9,
+    capacity: 15,
   },
   {
     id: 8,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Data Analyst",
-    company: "Twitter",
-    location: "San Diego, US",
-    description: "Twitter is looking for Data Analyst to help team design",
-    categories: [
-      {
-        id: 5,
-        name: "Technology",
-        color: "red",
-      },
-    ],
-    applied: 0,
-    capacity: 10,
+    employmentType: "Full-time",
+    position: "Software Engineer",
+    company: 7,
+    location: "Jakarta, Indonesia",
+    description:
+      "Develop software solutions, work on web applications, and improve digital tools for clients.",
+    majors: [4],
+    applied: 18,
+    capacity: 30,
   },
   {
     id: 9,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Social Media Assistant",
-    company: "Nomad",
-    location: "Paris, France",
-    description: "Nomad is looking for Social Media Assistant to help team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 4,
-    capacity: 10,
+    employmentType: "Internship",
+    position: "Machine Maintenance Intern",
+    company: 8,
+    location: "Surabaya, Indonesia",
+    description:
+      "Assist with machine upkeep and learn industrial maintenance techniques.",
+    majors: [1],
+    applied: 3,
+    capacity: 5,
   },
   {
     id: 10,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Social Media Assistant",
-    company: "Netlify",
-    location: "Paris, France",
-    description: "Netlify is looking for Social Media Assistant to help team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 8,
-    capacity: 10,
+    employmentType: "Full-time",
+    position: "Site Supervisor",
+    company: 9,
+    location: "Bali, Indonesia",
+    description:
+      "Supervise construction sites, ensuring project deadlines and safety standards are met.",
+    majors: [2],
+    applied: 14,
+    capacity: 20,
   },
   {
     id: 11,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Brand Designer",
-    company: "Maze",
-    location: "San Francisco, USA",
-    description: "Maze is looking for Brand Designer to help the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 7,
-    capacity: 10,
+    employmentType: "Contract",
+    position: "Electrical Engineer",
+    company: 10,
+    location: "Bandung, Indonesia",
+    description:
+      "Work on sustainable energy solutions and manage electric system designs.",
+    majors: [3],
+    applied: 10,
+    capacity: 12,
   },
   {
     id: 12,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Interactive Developer",
-    company: "Terraform",
-    location: "Hamburg, Germany",
+    employmentType: "Full-time",
+    position: "Frontend Developer",
+    company: 11,
+    location: "Makassar, Indonesia",
     description:
-      "Terraform is looking for Interactive Developer to help the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 4,
-    capacity: 10,
+      "Build and improve user interfaces for client websites and web applications.",
+    majors: [4],
+    applied: 22,
+    capacity: 28,
   },
   {
     id: 13,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "Interactive Developer",
-    company: "Udacity",
-    location: "Hamburg, Germany",
+    employmentType: "Full-time",
+    position: "Production Engineer",
+    company: 12,
+    location: "Jakarta, Indonesia",
     description:
-      "Udacity is looking for Interactive Developer to help the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 10,
-    capacity: 10,
+      "Oversee production processes and ensure operational efficiency in mechanical parts manufacturing.",
+    majors: [1],
+    applied: 6,
+    capacity: 8,
   },
   {
     id: 14,
     logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "HR Manager",
-    company: "Packer",
-    location: "Lucern, Switzerland",
+    employmentType: "Full-time",
+    position: "Construction Planner",
+    company: 13,
+    location: "Surabaya, Indonesia",
     description:
-      "Packer is looking for Human Resource Manager to help the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 9,
-    capacity: 10,
-  },
-  {
-    id: 15,
-    logo: "https://placehold.co/48",
-    employmentType: "Full Time",
-    position: "HR Manager",
-    company: "Webflow",
-    location: "Lucern, Switzerland",
-    description:
-      "Webflow is looking for Human Resource Manager to help the team",
-    categories: [
-      {
-        id: 3,
-        name: "Marketing",
-        color: "yellow",
-      },
-      {
-        id: 1,
-        name: "Design",
-        color: "green",
-      },
-    ],
-    applied: 6,
+      "Develop construction plans and schedules, working closely with project managers.",
+    majors: [2],
+    applied: 8,
     capacity: 10,
   },
 ];
@@ -357,6 +211,38 @@ export function useJob(id: number): FetchHookReturn<Job | null> {
 export function useJobs(): FetchHookReturn<Job[]> {
   return {
     data: dump,
+    isLoading: false,
+    isError: false,
+  };
+}
+
+export function useJobsByMajor(majorId?: number): FetchHookReturn<Job[]> {
+  if (majorId === undefined) {
+    return {
+      data: [],
+      isLoading: true,
+      isError: false,
+    };
+  }
+
+  return {
+    data: dump.filter((job) => job.majors.includes(majorId)),
+    isLoading: false,
+    isError: false,
+  };
+}
+
+export function useJobsByCompany(companyId?: number): FetchHookReturn<Job[]> {
+  if (companyId === undefined) {
+    return {
+      data: [],
+      isLoading: true,
+      isError: false,
+    };
+  }
+
+  return {
+    data: dump.filter((job) => job.company == companyId),
     isLoading: false,
     isError: false,
   };

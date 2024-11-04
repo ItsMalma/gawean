@@ -1,7 +1,7 @@
 "use client";
 
 import Footer from "@/components/footer";
-import Category from "@/app/(landing-page)/category";
+import Major from "@/app/(landing-page)/major";
 import Company from "@/app/(landing-page)/company";
 import CTA from "@/app/(landing-page)/cta";
 import FeaturedJobs from "@/app/(landing-page)/featured-jobs";
@@ -13,7 +13,7 @@ export default function LandingPage() {
     <div className="flex flex-col">
       <Hero />
       <Company />
-      <Category />
+      <Major />
       <CTA />
       <FeaturedJobs />
       <LatestJobs />

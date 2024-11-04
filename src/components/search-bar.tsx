@@ -1,4 +1,3 @@
-import { JobLocation, useJobLocations } from "@/api/job-location";
 import {
   Combobox,
   ComboboxButton,
@@ -10,14 +9,22 @@ import clsx from "clsx";
 import { ChevronDownIcon, MapPinIcon, SearchIcon } from "lucide-react";
 import React from "react";
 import Button from "./button";
+import { Location, useLocations } from "@/api/location";
 
-export type JobSearchProps = React.HTMLAttributes<HTMLDivElement> & {};
+export type SearchBarProps = React.HTMLAttributes<HTMLDivElement> & {
+  inputPlaceholder?: string;
+  buttonText?: string;
+};
 
-export default function JobSearch({ className, ...props }: JobSearchProps) {
-  const { data: locations } = useJobLocations();
-
+export default function SearchBar({
+  inputPlaceholder,
+  buttonText = "Cari",
+  className,
+  ...props
+}: SearchBarProps) {
+  const { data: locations } = useLocations();
   const [selectedLocation, setSelectedLocation] =
-    React.useState<JobLocation | null>(null);
+    React.useState<Location | null>(null);
 
   return (
     <div
@@ -32,6 +39,7 @@ export default function JobSearch({ className, ...props }: JobSearchProps) {
         <input
           type="text"
           className="grow h-14 border-b border-neutral-2 placeholder:text-neutral-4 text-neutral-6"
+          placeholder={inputPlaceholder}
         />
       </div>
       <div className="grow flex gap-4 items-center">
@@ -42,9 +50,10 @@ export default function JobSearch({ className, ...props }: JobSearchProps) {
           onChange={setSelectedLocation}
         >
           <div className="grow relative">
-            <ComboboxInput<JobLocation>
+            <ComboboxInput<Location>
               displayValue={(location) => location?.name}
               className="w-full h-14 border-b border-neutral-2 placeholder:text-neutral-4 text-neutral-6"
+              placeholder="Pilih lokasi"
             />
             <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
               <ChevronDownIcon className="size-4 text-neutral-4 transition-transform duration-300 ease-in group-data-[open]:rotate-180" />
@@ -67,7 +76,7 @@ export default function JobSearch({ className, ...props }: JobSearchProps) {
           </ComboboxOptions>
         </Combobox>
       </div>
-      <Button text="Cari Pekerjaan" />
+      <Button text={buttonText} />
     </div>
   );
 }
